@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TFG — Adrián Calderón de Amat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #111820;
+      --border: #1e2d3d;
+      --accent: #00c6a2;
+      --accent2: #0077ff;
+      --text: #e8edf2;
+      --muted: #6b7f91;
+      --card: #141c26;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,198,162,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,198,162,.04) 1px, transparent 1px);
+      background-size: 40px 40px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HEADER ── */
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 72px 48px 56px;
+      max-width: 960px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tag {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 4px 12px;
+      border-radius: 2px;
+      margin-bottom: 28px;
+      opacity: 0;
+      animation: fadeUp .6s ease forwards;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height: 1.18;
+      font-weight: 700;
+      max-width: 780px;
+      opacity: 0;
+      animation: fadeUp .7s ease .1s forwards;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .meta {
+      margin-top: 28px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+      opacity: 0;
+      animation: fadeUp .7s ease .2s forwards;
+    }
+
+    .meta-item {
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    .meta-item span {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    /* ── ABSTRACT ── */
+    .abstract {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 48px;
+      border-bottom: 1px solid var(--border);
+      opacity: 0;
+      animation: fadeUp .7s ease .35s forwards;
+    }
+
+    .abstract p {
+      font-size: 15px;
+      line-height: 1.8;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .abstract p strong {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .keywords {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .kw {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      background: var(--border);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 2px;
+      letter-spacing: .06em;
+    }
+
+    /* ── SECTION TITLE ── */
+    .section-header {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 40px 48px 20px;
+    }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      color: var(--text);
+    }
+
+    /* ── CHARTS GRID ── */
+    .grid {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 48px 64px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      transition: border-color .25s, transform .25s, box-shadow .25s;
+      opacity: 0;
+      animation: fadeUp .6s ease forwards;
+    }
+
+    .card:hover {
+      border-color: var(--accent);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(0,198,162,.12);
+    }
+
+    .card-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 10px;
+      color: var(--accent2);
+      padding: 14px 16px 0;
+      letter-spacing: .1em;
+    }
+
+    .card-title {
+      padding: 8px 16px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.45;
+      color: var(--text);
+      flex: 1;
+    }
+
+    .card-desc {
+      padding: 0 16px 14px;
+      font-size: 12px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .card-footer {
+      padding: 12px 16px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .open-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent);
+      font-size: 11px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .open-btn svg {
+      transition: transform .2s;
+    }
+    .card:hover .open-btn svg {
+      transform: translate(2px, -2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 24px 48px 48px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      color: var(--muted);
+    }
+
+    .dot {
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: 8px;
+      animation: pulse 2s infinite;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: .3; }
+    }
+
+    /* stagger cards */
+    .card:nth-child(1)  { animation-delay: .4s; }
+    .card:nth-child(2)  { animation-delay: .48s; }
+    .card:nth-child(3)  { animation-delay: .56s; }
+    .card:nth-child(4)  { animation-delay: .64s; }
+    .card:nth-child(5)  { animation-delay: .72s; }
+    .card:nth-child(6)  { animation-delay: .80s; }
+    .card:nth-child(7)  { animation-delay: .88s; }
+    .card:nth-child(8)  { animation-delay: .96s; }
+    .card:nth-child(9)  { animation-delay: 1.04s; }
+
+    @media (max-width: 600px) {
+      header, .abstract, .section-header, .grid, footer {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="tag">TFG · Ingeniería de Software · U-Tad</div>
+  <h1>Inversión <em>Inteligente</em> y Estable:<br>Comparación de Estrategias de Optimización de Portafolios Usando LSTM y Agentes de Deep Reinforcement Learning</h1>
+  <div class="meta">
+    <div class="meta-item">Alumno &nbsp;<span>Adrián Calderón de Amat</span></div>
+    <div class="meta-item">Tutor &nbsp;<span>Ricardo Palacios Maya</span></div>
+    <div class="meta-item">Grado &nbsp;<span>Ingeniería de Software</span></div>
+    <div class="meta-item">Convocatoria &nbsp;<span>Ordinaria · 2026</span></div>
+  </div>
+</header>
+
+<div class="abstract">
+  <p>
+    Este trabajo diseña y compara estrategias de optimización de portafolios financieros basadas en dos enfoques de inteligencia artificial:
+    <strong>predicción mediante redes LSTM</strong> y <strong>toma de decisiones mediante agentes de Deep Reinforcement Learning (PPO)</strong>,
+    incorporando análisis de sentimiento financiero a partir de noticias. Se evalúa el desempeño bajo el marco Post-Modern Portfolio Theory (PMPT)
+    usando métricas de rentabilidad y riesgo en el mercado estadounidense durante el periodo 2010–2025.
+  </p>
+  <div class="keywords">
+    <span class="kw">LSTM</span>
+    <span class="kw">DRL · PPO</span>
+    <span class="kw">PMPT</span>
+    <span class="kw">Portafolios</span>
+    <span class="kw">Sentimiento Financiero</span>
+    <span class="kw">S&amp;P 500</span>
+    <span class="kw">ETFs</span>
+  </div>
+</div>
+
+<div class="section-header">
+  <p class="section-label">Visualizaciones interactivas</p>
+  <h2 class="section-title">Resultados del Backtesting</h2>
+</div>
+
+<div class="grid">
+
+  <a class="card" href="01_cumulative_returns_comparison.html" target="_blank">
+    <div class="card-num">01</div>
+    <div class="card-title">Evolución de Retornos Acumulados</div>
+    <div class="card-desc">Comparación del crecimiento acumulado de LSTM+PMPT, PPO, S&P 500, Equal Weight y MVO durante el periodo de prueba (Jul 2024 – Dic 2025).</div>
+    <div class="card-footer">
+      <span>Retorno · Benchmarks</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="02_drawdown_comparison.html" target="_blank">
+    <div class="card-num">02</div>
+    <div class="card-title">Análisis de Drawdown</div>
+    <div class="card-desc">Caída porcentual máxima desde los picos históricos de cada estrategia. El PPO mantiene drawdown controlado gracias a la penalización por riesgo a la baja.</div>
+    <div class="card-footer">
+      <span>Riesgo · MDD</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="03_risk_return_scatter.html" target="_blank">
+    <div class="card-num">03</div>
+    <div class="card-title">Relación Riesgo–Retorno</div>
+    <div class="card-desc">Diagrama de dispersión CAGR vs. Volatilidad anualizada. Permite identificar la posición de cada estrategia en el espacio riesgo-retorno.</div>
+    <div class="card-footer">
+      <span>CAGR · Volatilidad</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="04_concentration_plot.html" target="_blank">
+    <div class="card-num">04</div>
+    <div class="card-title">Concentración del Portafolio (HHI)</div>
+    <div class="card-desc">Índice Herfindahl-Hirschman a lo largo del tiempo. El PPO mantiene HHI≈0.05 (alta diversificación), mientras LSTM concentra capital en pocos activos.</div>
+    <div class="card-footer">
+      <span>Diversificación · HHI</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="05_turnover_comparison.html" target="_blank">
+    <div class="card-num">05</div>
+    <div class="card-title">Rotación del Portafolio (Turnover)</div>
+    <div class="card-desc">Nivel de ajuste mensual en la asignación de activos. LSTM presenta alta rotación; PPO muestra cambios mínimos gracias a la penalización de rebalanceo.</div>
+    <div class="card-footer">
+      <span>Rotación · Costes</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="06_rolling_sharpe.html" target="_blank">
+    <div class="card-num">06</div>
+    <div class="card-title">Sharpe Ratio Rodante (12 meses)</div>
+    <div class="card-desc">Evolución temporal del Sharpe Ratio con ventana móvil de 12 meses. El PPO alcanza los valores más altos al final del periodo de prueba.</div>
+    <div class="card-footer">
+      <span>Sharpe · Rendimiento ajustado</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="07_rolling_sortino.html" target="_blank">
+    <div class="card-num">07</div>
+    <div class="card-title">Sortino Ratio Rodante (12 meses)</div>
+    <div class="card-desc">Métrica de riesgo a la baja con ventana móvil de 12 meses. Evalúa el rendimiento penalizando únicamente la volatilidad negativa respecto al MAR del 4%.</div>
+    <div class="card-footer">
+      <span>Sortino · Riesgo bajista</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="08_portfolio_mix_etf_vs_stocks.html" target="_blank">
+    <div class="card-num">08</div>
+    <div class="card-title">Composición ETFs vs. Acciones</div>
+    <div class="card-desc">Distribución agregada del capital entre ETFs y acciones. LSTM muestra preferencia por ETFs (60%), PPO distribuye de forma casi equitativa.</div>
+    <div class="card-footer">
+      <span>Asignación · ETFs</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+  <a class="card" href="09_portfolio_top_4_plus_others.html" target="_blank">
+    <div class="card-num">09</div>
+    <div class="card-title">Principales Activos del Portafolio</div>
+    <div class="card-desc">Instrumentos con mayor peso promedio: LSTM concentra más del 75% en 4 activos (XLU, JPM, XLK, AMZN); PPO reparte equitativamente entre todos.</div>
+    <div class="card-footer">
+      <span>Top activos · Pesos</span>
+      <span class="open-btn">Abrir
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </span>
+    </div>
+  </a>
+
+</div>
+
+<footer>
+  <p><span class="dot"></span>Adrián Calderón de Amat · TFG · U-Tad · 2026</p>
+  <p>Tutor: Ricardo Palacios Maya</p>
+</footer>
+
+</body>
+</html>
