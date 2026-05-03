@@ -9,16 +9,16 @@
   <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --bg: #f7f4ec;
-      --paper: #fdfcf8;
-      --rule: #d8d1c0;
-      --rule-soft: #e8e2d2;
-      --text: #1b2230;
-      --text-soft: #4a5468;
-      --muted: #8a8474;
-      --ink: #0a2f6b;
-      --accent: #8b1e2d;
-      --accent-soft: #c79b72;
+      --bg: #07192a;
+      --paper: #0b3c5d;
+      --rule: #1e4d70;
+      --rule-soft: #163d58;
+      --text: #dceefb;
+      --text-soft: #7fbbda;
+      --muted: #4d7f9b;
+      --ink: #93c5fd;
+      --accent: #3b82f6;
+      --accent-soft: #60a5fa;
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,7 +27,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+      font-family: 'IBM Plex Sans', system-ui, sans-serif;
       font-weight: 400;
       font-size: 17px;
       line-height: 1.65;
@@ -180,14 +180,14 @@
     }
 
     .kw {
-      font-family: 'IBM Plex Sans', sans-serif;
-      font-size: 12px;
-      color: var(--ink);
-      padding: 3px 10px;
-      border: 1px solid var(--rule);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 11px;
+      color: var(--accent-soft);
+      padding: 4px 11px;
+      border: 1px solid var(--accent);
       border-radius: 2px;
-      letter-spacing: .02em;
-      background: var(--paper);
+      letter-spacing: .04em;
+      background: rgba(59, 130, 246, .10);
     }
 
     /* ── SECTION ── */
@@ -245,8 +245,8 @@
 
     .card:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 24px rgba(27, 34, 48, .07);
-      border-color: var(--text-soft);
+      box-shadow: 0 6px 28px rgba(0, 0, 0, .40);
+      border-color: var(--accent);
     }
 
     .card:hover::before {
@@ -255,7 +255,7 @@
 
     .card.active {
       border-color: var(--accent);
-      background: #fffefa;
+      background: #0f4878;
     }
     .card.active::before { transform: scaleY(1); }
 
@@ -326,8 +326,8 @@
       align-items: center;
       justify-content: space-between;
       padding: 14px 22px;
-      border-bottom: 1px solid var(--rule-soft);
-      background: var(--bg);
+      border-bottom: 1px solid var(--rule);
+      background: #071829;
     }
 
     .viewer-meta {
