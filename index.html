@@ -4,9 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>TFG — Adrián Calderón de Amat</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300..700;1,8..60,300..700&family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <!-- Tipografía: Georgia (títulos) · Calibri (cuerpo) — system fonts, sin carga externa -->
   <style>
     :root {
       --bg: #07192a;
@@ -27,7 +25,7 @@
     body {
       background: var(--bg);
       color: var(--text);
-      font-family: 'IBM Plex Sans', system-ui, sans-serif;
+      font-family: Calibri, 'Segoe UI', system-ui, sans-serif;
       font-weight: 400;
       font-size: 17px;
       line-height: 1.65;
@@ -51,7 +49,7 @@
     }
 
     .eyebrow {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       letter-spacing: .22em;
       text-transform: uppercase;
@@ -64,7 +62,7 @@
     }
 
     h1 {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: clamp(30px, 3.6vw, 44px);
       line-height: 1.18;
       font-weight: 600;
@@ -98,14 +96,14 @@
     }
 
     .meta-item {
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 13px;
       color: var(--muted);
     }
 
     .meta-item .label {
       display: block;
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 10px;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -126,7 +124,7 @@
     }
 
     .section-mark {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 10px;
       letter-spacing: .22em;
       text-transform: uppercase;
@@ -135,7 +133,7 @@
     }
 
     .abstract h2 {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: 22px;
       font-weight: 600;
       margin-bottom: 18px;
@@ -170,7 +168,7 @@
     }
 
     .kw-label {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -180,7 +178,7 @@
     }
 
     .kw {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       color: var(--accent-soft);
       padding: 4px 11px;
@@ -196,7 +194,7 @@
     }
 
     .section-header h2 {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: 26px;
       font-weight: 600;
       color: var(--text);
@@ -260,7 +258,7 @@
     .card.active::before { transform: scaleY(1); }
 
     .card-num {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       letter-spacing: .14em;
       color: var(--accent);
@@ -268,7 +266,7 @@
     }
 
     .card-title {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: 17px;
       font-weight: 600;
       line-height: 1.35;
@@ -281,7 +279,7 @@
       color: var(--text-soft);
       line-height: 1.6;
       flex: 1;
-      font-family: 'IBM Plex Sans', sans-serif;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-weight: 300;
     }
 
@@ -292,7 +290,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 10px;
       letter-spacing: .12em;
       text-transform: uppercase;
@@ -337,7 +335,7 @@
     }
 
     .viewer-num {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 10px;
       letter-spacing: .18em;
       text-transform: uppercase;
@@ -345,7 +343,7 @@
     }
 
     .viewer-title {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-size: 17px;
       font-weight: 600;
       color: var(--text);
@@ -357,7 +355,7 @@
     }
 
     .btn {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       letter-spacing: .1em;
       text-transform: uppercase;
@@ -405,14 +403,14 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 12px;
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: Calibri, 'Segoe UI', sans-serif;
       font-size: 11px;
       letter-spacing: .08em;
       color: var(--muted);
     }
 
     footer .signature {
-      font-family: 'Source Serif 4', Georgia, serif;
+      font-family: Georgia, 'Times New Roman', serif;
       font-style: italic;
       font-size: 13px;
       letter-spacing: 0;
